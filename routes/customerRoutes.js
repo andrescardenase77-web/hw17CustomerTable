@@ -1,7 +1,6 @@
 const express = require("express");
 const customer = require("../models/customer");
 const router = express.Router();
-//Get all Customers
 router.get("/customers", async (req, res) => {
     try{
         const customers = await customer.find();
@@ -10,7 +9,6 @@ router.get("/customers", async (req, res) => {
         res.status(500).json({ message: err.message });
     }
 });
-//Get customer by CustomerId
 router.get('/customer/:id', async (req, res) =>{
     try{
         const customerObject = await customer.findOne({ id: req.params.id });
@@ -24,7 +22,6 @@ router.get('/customer/:id', async (req, res) =>{
     }
 });
 
-// Get total money spent from every customers
 router.get("/totalspent", async (req, res) => {
     try {
         const calculatedTotalSpent = await customer.aggregate([
@@ -44,6 +41,14 @@ router.get("/totalspent", async (req, res) => {
 
     } catch (err) {
         res.status(500).json({ message: err.message });
+    }
+});
+
+router.get("/customers/dashboard", async (req, res) => {
+    try {
+        res.render("customers");
+    } catch (routeError) {
+        res.status(500).json({ error: "System was unable to build the view layout template" });
     }
 });
 
