@@ -23,15 +23,15 @@
             </thead>
             <tbody>
                 <tr v-for="activeCustomer in storeCustomers" :key="activeCustomer._id">
-                    <td>{{ activeCustomer.name }}</td>
-                    <td>{{ activeCustomer.email }}</td>
-                    <td>$ {{ activeCustomer.spent }}</td>
+                    <td>{{ activeCustomer.name || 'Anonymous Customer' }}</td>
+                    <td>{{ activeCustomer.email || 'No Email Provided' }}</td>
+                    <td>$ {{ activeCustomer.moneySpent || 0 }}</td>
                 </tr>
             </tbody>
         </table>
 
         <div class="summary-container">
-            Overall Financial Output: $ {{ globalAmountSpent }}
+            Total Spent: $ {{ globalAmountSpent }}
         </div>
     </div>
 

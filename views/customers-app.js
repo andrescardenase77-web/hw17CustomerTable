@@ -9,7 +9,7 @@ createApp({
     computed: {
         globalAmountSpent() {
             return this.storeCustomers.reduce((monetaryTotal, currentRecord) => {
-                return monetaryTotal + (currentRecord.spent || 0);
+                return monetaryTotal + (currentRecord.moneySpent || 0);
             }, 0);
         }
     },
@@ -19,7 +19,7 @@ createApp({
     methods: {
         async loadCustomerRecords() {
             try {
-                const apiResponse = await fetch("/computerStore/customers");
+                const apiResponse = await fetch("/computerstore/customers");
                 if (!apiResponse.ok) {
                     throw new Error("Failed to fetch customer directory database");
                 }

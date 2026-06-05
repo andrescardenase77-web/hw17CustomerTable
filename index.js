@@ -17,6 +17,7 @@ db.once("open", () =>
 );
 
 app.use(express.json());
+app.use(express.static("./views"));
 
 const customerRouter = require("./routes/customerRoutes");
 app.use("/computerstore", customerRouter);
